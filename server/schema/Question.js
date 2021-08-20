@@ -1,19 +1,17 @@
 import mongoose from 'mongoose';
 
 const questions = new mongoose.Schema( {
+    title: {
+        type: String,
+        required: true
+    },
     content: {
         type: String,
-        required: true,
-        index: true,
-        lowercase: true
+        required: true
     },
-    username: {
+    usernameQ: {
         type: String,
-        required: true,
-        trim: true,
-        unique: true,
-        index: true,
-        lowercase: true
+        required: true
     }
 });
 

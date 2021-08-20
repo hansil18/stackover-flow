@@ -17,6 +17,26 @@ router.post('/signin', async (req,res,next) => {
     .catch(next => console.log(next));
 })
 
+router.post('/addquestion', async (req,res,next) => {
+    const exist = await Question.findOne({ title: req.body.title, content: req.body.content, usernameQ : req.body.usernameQ});
+    if(exist){
+        return res.status(401).json('question already exist');
+    } 
+    Question.create(req.body)
+    .then(data => res.json(data))
+    .catch(next => console.log(next));
+})
+
+router.get('/question/search', async (req,res,next) => {
+    const exist = await Question.find({});
+    if(exist){
+        return res.json(exist);
+    } 
+    else{
+        return res.json('no data found');
+    }
+})
+
 router.post('/login', async (req, res, next) => {
     const user = await User.findOne({username: req.body.username, password: req.body.password});
     if(user){

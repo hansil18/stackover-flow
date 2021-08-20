@@ -20,3 +20,12 @@ export const authenticateLogin = async (user) => {
         console.log('Error while calling login api', error);
     }
 }
+
+export const add_question = async (question) => {
+    try {
+        return await axios.post(`${url}/addquestion`, question);
+    }
+    catch(error) {
+        console.log('Error while calling login api', error);
+    }
+}

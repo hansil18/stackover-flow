@@ -4,7 +4,6 @@ const answers = new mongoose.Schema({
     content: {
         type: String,
         required: true,
-        index: true
     },
     questionid: {
         type: String,
