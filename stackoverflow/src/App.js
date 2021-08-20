@@ -3,12 +3,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import LoginState from "./controller/loginstate";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   return (
-    <div className="App">
+    <LoginState>
       <BrowserRouter>
         <Header />
         <Switch>
@@ -17,7 +18,7 @@ function App() {
           <Route exact path='/Login' component={Login} />
         </Switch>
       </BrowserRouter>
-    </div>
+    </LoginState>
   );
 }
 

@@ -1,14 +1,43 @@
 import { Form, Col, Button } from 'react-bootstrap';
-import { useState , useContext} from 'react';
-import {useHistory} from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
+import { authenticateLogin } from '../services/service.js';
+import { useState , useContext} from 'react';
+import { LoginContext } from '../controller/loginstate.jsx';
+import {useHistory} from 'react-router-dom'
 
 
-
+const loginInitialValues = {
+    username: '',
+    password: '',
+};
 
 
 const Login = () => {
+
+    const [login, setLogin] = useState(loginInitialValues);
+
+    const {account, setAccount} = useContext(LoginContext);
+
+    const onValueChange = (e) => {
+        setLogin({ ...login, [e.target.name]: e.target.value });
+    }
     
+    const history = useHistory();
+
+    const clickHandler = async () => {
+        let response = await authenticateLogin(login);
+        if(!response) {
+            alert("invalid login");
+            setLogin({ ...login, password: ''});
+            return;  
+        }
+        // alert("login successfully");
+        setAccount(login.username);
+        setLogin(loginInitialValues);
+        alert("login successful");
+    }
+    
+
     return (
         <div style={{ display: 'block', 
         width: '30%',
@@ -26,15 +55,15 @@ const Login = () => {
                     <Form.Label style={{fontSize: 20, color: '#ffffff'}}>
                         <span>User Name</span>
                     </Form.Label>
-                    <Form.Control name="username" type="text" placeholder="Enter User Name"/>
+                    <Form.Control onChange={(e) => onValueChange(e)} value={login.username} name="username" type="text" placeholder="Enter User Name"/>
                 </Form.Group>
                 <Form.Group as={Col}>
                     <Form.Label style={{fontSize: 20, color: '#ffffff'}}>
                         <span>Password</span>
                     </Form.Label>
-                    <Form.Control name="password" type="password" placeholder="Enter Password"/>
+                    <Form.Control onChange={(e) => onValueChange(e) } name="password" value={login.password} type="password" placeholder="Enter Password"/>
                 </Form.Group>
-                <Button size="lg" variant="success"  style={{marginLeft: '40%', marginTop: 20}}>
+                <Button size="lg" variant="success" onClick={() => clickHandler()} style={{marginLeft: '40%', marginTop: 20}}>
                     Login
                 </Button>
             </Form>
