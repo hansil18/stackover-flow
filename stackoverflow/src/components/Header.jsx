@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import { LoginContext } from '../controller/loginstate';
 import { useHistory } from 'react-router-dom';
 import {IoMdPower} from 'react-icons/io';
+import {BiCodeAlt} from 'react-icons/bi';
 
 const Header = () => {
 
@@ -20,6 +21,7 @@ const Header = () => {
         <Navbar style={{height: 50, background: 'black', marginTop: 15}} sticky="top">
             <Link to='/' className="mx-auto">
                 <Navbar.Brand>
+                    <BiCodeAlt className="mb-2" style={{color: '#5cb85c'}}/>
                     <span style={{color:'#ffffff', fontWeight: 600}}>Code</span>
                     <span style={{color:'#5cb85c', fontWeight: 600}}>Helper</span>
                 </Navbar.Brand>
@@ -30,14 +32,14 @@ const Header = () => {
                         <Link to='/Signup'>
                             <Nav.Item  className="mr-4">
                                 <Button variant="outline-success">
-                                    AdminSignup
+                                    Signup
                                 </Button>
                             </Nav.Item>
                         </Link>
                         <Link to='/Login'>
                             <Nav.Item style = {{color: 'white'}}>
                                 <Button variant="success">
-                                    AdminLogin
+                                    Login
                                 </Button>
                             </Nav.Item>
                         </Link>

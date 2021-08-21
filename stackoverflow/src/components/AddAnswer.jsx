@@ -11,6 +11,14 @@ const AddAnswer = (props) => {
     console.log(questiondataid);
     const {account, setAccount} = useContext(LoginContext);
 
+    const history = useHistory();
+
+    if(account === '') 
+    {
+        history.push('/login');
+        alert("login to continue");
+    }
+
     const answerInitialValues = {
         content: '',
         questionid: questiondataid,
@@ -24,7 +32,6 @@ const AddAnswer = (props) => {
         console.log(answer);
     }
 
-    const history = useHistory();
     
     const clickHandler = async () => {
         console.log(answer);

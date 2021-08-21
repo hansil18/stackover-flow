@@ -31,13 +31,13 @@ const Signup = () => {
             setSignup({ ...signup, password: ''});
             return;
         }
-        alert("signup successfully");
         setSignup(signupInitialValues);
+        history.push('/login');
     }
 
     return (
         <div style={{ display: 'block', 
-        width: '70%',
+        width: '30%',
         margin: '100px auto',
         borderRadius: '5px',
         background: 'rgba(255,255,255, 0.15)',
