@@ -15,7 +15,7 @@ This is where you want to demonstrate the technologies you used in this project 
 Clone the project to local system and open the current folder
 
 ```bash
-cd .\stackoverflow\
+cd .\client\
 npm install
 ```
 Again go the main folder 
@@ -28,7 +28,7 @@ npm install
 
 
 ```bash
-cd .\stackoverflow\
+cd .\client\
 npm start
 ```
 
