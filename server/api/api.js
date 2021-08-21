@@ -18,14 +18,17 @@ router.post('/signin', async (req,res,next) => {
 })
 
 router.post('/addquestion', async (req,res,next) => {
-    const exist = await Question.findOne({ title: req.body.title, content: req.body.content, usernameQ : req.body.usernameQ});
+    const exist = await Question.findOne({ _id: req.body._id});
     if(exist){
-        return res.status(401).json('question already exist');
+        return Question.updateOne({"_id":exist._id},{$set:{title:req.body.title, content:req.body.content}});
     } 
-    Question.create(req.body)
-    .then(data => res.json(data))
-    .catch(next => console.log(next));
+    else{
+        Question.create(req.body)
+        .then(data => res.json(data))
+        .catch(next => console.log(next));
+    }
 })
+
 
 router.post('/addanswer', async (req,res,next) => {
     const exist = await Answer.findOne({ content: req.body.content, questionid: req.body.questionid, usernameA : req.body.usernameA});

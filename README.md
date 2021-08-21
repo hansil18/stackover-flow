@@ -2,7 +2,7 @@
 
 ## Technology Stack
 
-This is where you want to demonstrate the technologies you used in this project and provide any links.
+
 | Technology | Description                               | Link ↘️ |
 |------------|-------------------------------------------|--------|
 | MongoDB    | Database                                  | ----   |

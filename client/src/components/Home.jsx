@@ -5,6 +5,7 @@ import axios from 'axios';
 import { LoginContext } from '../controller/loginstate';
 import AddAnswer from './AddAnswer';
 import SeeAnswer from './SeeAnswer';
+import EditQuestion from './EditQuestion';
 
 
 const url = 'http://localhost:5000/api';
@@ -15,7 +16,7 @@ const Home = () => {
 
     const {account, setAccount} = useContext(LoginContext);
 
-    const [ clickdone, setClickdone ] = useState(false);
+    const [ clickdone, setClickdone ] = useState("false");
 
     const [ clickquestionid, setClickquestionid ] =  useState();
 
@@ -34,13 +35,13 @@ const Home = () => {
 
     useEffect(() => {
         questionSaver();
-    }, [])
+    }, [clickdone])
 
 
     return (
         <div>
         {
-            (clickdone === false) ? 
+            (clickdone === "false") ? 
             <div>
             {
                 // component for all the questions output
@@ -65,6 +66,9 @@ const Home = () => {
                                             <Button variant="success" size="sm" id="addanswer" onClick={() => {setClickdone("addanswer"); setClickquestionid(question)}}>
                                                 Add Answer
                                             </Button>
+                                            <Button variant="outline-success" size="sm" id="editquestion" onClick={() => {setClickdone("editquestion"); setClickquestionid(question)}}>
+                                                Edit Question
+                                            </Button>
                                         </div>
                                     </Card.Body>
                                 </Card>
@@ -83,11 +87,20 @@ const Home = () => {
                 </div>
                 : 
                 <div>
-                    <AddAnswer questionid={clickquestionid._id} />
+                {
+                    (clickdone === "addanswer")?
+                    <div>
+                        <AddAnswer question={clickquestionid._id} />
+                    </div>
+                    :
+                    <div>
+                        <EditQuestion question={clickquestionid} />
+                    </div>
+                }
                 </div>
             }
                 <div className="d-flex justify-content-center">
-                    <Button variant="success" size="lg" id="addanswer" onClick={() => {setClickdone(false)}}>
+                    <Button variant="success" size="lg" id="addanswer" onClick={() => {setClickdone("false"); questionSaver(); setQuestiondata([])}}>
                         Back to Home
                     </Button>
                 </div>
