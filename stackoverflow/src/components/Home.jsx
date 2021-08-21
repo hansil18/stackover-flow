@@ -86,6 +86,11 @@ const Home = () => {
                     <AddAnswer questionid={clickquestionid._id} />
                 </div>
             }
+                <div className="d-flex justify-content-center">
+                    <Button variant="success" size="lg" id="addanswer" onClick={() => {setClickdone(false)}}>
+                        Back to Home
+                    </Button>
+                </div>
             </div>
         }
         </div>
