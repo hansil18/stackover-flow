@@ -1,4 +1,4 @@
-# stackover-flow
+# Code Helper (stackover-flow clone)
 
 ## Technology Stack
 
