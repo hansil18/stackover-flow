@@ -3,6 +3,9 @@ import { useEffect, useState, useContext} from 'react';
 import {FaRegQuestionCircle} from 'react-icons/fa';
 import axios from 'axios';
 import { LoginContext } from '../controller/loginstate';
+import AddAnswer from './AddAnswer';
+import SeeAnswer from './SeeAnswer';
+
 
 const url = 'http://localhost:5000/api';
 
@@ -11,6 +14,10 @@ const Home = () => {
     var [ questiondata, setQuestiondata ] = useState([]);
 
     const {account, setAccount} = useContext(LoginContext);
+
+    const [ clickdone, setClickdone ] = useState(false);
+
+    const [ clickquestionid, setClickquestionid ] =  useState();
 
     const questionSaver = async () => {
         try {
@@ -24,17 +31,19 @@ const Home = () => {
         }
     }
 
+
     useEffect(() => {
         questionSaver();
     }, [])
 
-    console.log(questiondata[0]);
 
     return (
         <div>
         {
+            (clickdone === false) ? 
             <div>
             {
+                // component for all the questions output
                 <Row xs={1} md={2} className="g-4" style={{margin: '3% 3%'}}>
                 {
                     (questiondata[0] === undefined)?
@@ -50,10 +59,10 @@ const Home = () => {
                                             <span style={{color:'#FFFF00'}}>By: {question.usernameQ}</span>
                                         </Card.Text>
                                         <div className="d-flex justify-content-around">
-                                            <Button variant="outline-success">
+                                            <Button variant="outline-success" size="sm" id="seeanswer" onClick={() => {setClickdone("seeanswer"); setClickquestionid(question)}}>
                                                 See Answers
                                             </Button>
-                                            <Button variant="success">
+                                            <Button variant="success" size="sm" id="addanswer" onClick={() => {setClickdone("addanswer"); setClickquestionid(question)}}>
                                                 Add Answer
                                             </Button>
                                         </div>
@@ -63,6 +72,19 @@ const Home = () => {
                         ))
                 }
                 </Row>
+            }
+            </div>
+            :
+            <div>
+            {
+                (clickdone === "seeanswer")?
+                <div>
+                    <SeeAnswer question={clickquestionid} />
+                </div>
+                : 
+                <div>
+                    <AddAnswer questionid={clickquestionid._id} />
+                </div>
             }
             </div>
         }

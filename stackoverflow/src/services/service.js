@@ -29,3 +29,15 @@ export const add_question = async (question) => {
         console.log('Error while calling login api', error);
     }
 }
+
+export const add_answer = async (answer) => {
+    try {
+        return await axios.post(`${url}/addanswer`, answer);
+    }
+    catch(error) {
+        console.log('Error while calling login api', error);
+    }
+}
+
+
+

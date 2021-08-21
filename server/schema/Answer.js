@@ -3,13 +3,13 @@ import mongoose from 'mongoose';
 const answers = new mongoose.Schema({
     content: {
         type: String,
-        required: true,
+        required: true
     },
     questionid: {
         type: String,
         required: true
     },
-    username: {
+    usernameA: {
         type: String,
         required: true,
         trim: true,
