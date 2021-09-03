@@ -7,7 +7,7 @@ import { LoginContext } from '../controller/loginstate';
 
 const AddAnswer = (props) => {
 
-    const [questiondataid, setQuestiondataid] = useState(props.questionid);
+    const [questiondataid, setQuestiondataid] = useState(props.question);
     console.log(questiondataid);
     const {account, setAccount} = useContext(LoginContext);
 
